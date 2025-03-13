@@ -1,3 +1,4 @@
+#!/bin/bash
 
 if [ -z "$1" ]; then
   echo "Uso: $0 <nome_do_projeto>"
