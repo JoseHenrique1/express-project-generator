@@ -23,6 +23,23 @@ touch "$DB_DIR/prisma.ts"
 touch "$TYPES_DIR/express.d.ts"
 touch "$MODULES_DIR/index.ts"
 
+cat > "$PROJECT_DIR/handler-error.ts" <<EOL
+import { ErrorRequestHandler } from "express";
+import { ZodError } from "zod";
+
+export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  if (err instanceof ZodError) {
+    res.status(400).json({ error: err.format() });
+    return;
+  }
+
+  console.error(err);
+  res.status(500).json({
+    message: "Erro interno no servidor",
+  });
+  return;
+};
+EOL
 
 cat > package.json <<EOL
 {
@@ -44,12 +61,15 @@ cat > "$PROJECT_DIR/index.ts" <<EOL
 import express from "express";
 import "express-async-errors";
 import { router } from "./modules/index.ts";
+import { errorHandler } from "./handler-error.ts";
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/", router);
+
+app.use(errorHandler);
 
 app.listen(3333, () => console.log("Server is running on port 3333"));
 EOL
