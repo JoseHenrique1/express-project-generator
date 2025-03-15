@@ -64,6 +64,7 @@ DEPENDENCIES=(
   "cors"
   "express"
   "express-async-errors"
+  "zod"
 )
 
 DEV_DEPENDENCIES=(

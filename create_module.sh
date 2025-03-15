@@ -99,6 +99,8 @@ export const service$MODULE_CAPITALIZED = {
 EOL
 
 touch "$MODULE_PATH/$MODULE_NAME.types.ts"
+touch "$MODULE_PATH/$MODULE_NAME.middleware.ts"
+touch "$MODULE_PATH/$MODULE_NAME.validators.ts"
 
 if ! grep -q "router$MODULE_CAPITALIZED" "$INDEX_FILE"; then
   echo "import { router$MODULE_CAPITALIZED } from \"./$MODULE_NAME/$MODULE_NAME.route.ts\";" >> "$INDEX_FILE"
