@@ -85,12 +85,19 @@ DEPENDENCIES=(
   "express"
   "express-async-errors"
   "zod"
+  "bcrypt"
+  "dotenv"
+  "jsonwebtoken"
+  "multer"
 )
 
 DEV_DEPENDENCIES=(
   "@biomejs/biome"
   "@types/express"
   "@types/node"
+  "@types/multer"
+  "@types/jsonwebtoken"
+  "@types/bcrypt"
   "tsx"
   "typescript"
   "prisma"
